@@ -9,37 +9,190 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        body { font-family: 'Poppins', sans-serif; background-color: #111; color: #f3f4f6; overflow: hidden; /* Sembunyikan scrollbar awal */ }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: #111; 
+            color: #f3f4f6; 
+            overflow: hidden; /* Mencegah scroll sebelum undangan dibuka */
+        }
         .font-serif { font-family: 'Playfair Display', serif; }
         .font-script { font-family: 'Great Vibes', cursive; }
         
-        /* Background Hero & Cover menggunakan foto1.jpg */
-        .bg-foto1 {
-            background-image: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(17,17,17,1)), url('foto1.jpg');
+        /* ========================================================
+           GANTI BACKGROUND FOTO DI SINI NANTINYA 
+           Ubah URL di bawah ini menjadi 'foto1.jpg' jika sudah siap
+        ======================================================== */
+        .bg-foto-utama {
+            background-image: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(17,17,17,1)), url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2069&auto=format&fit=crop');
             background-size: cover;
             background-position: center top;
         }
 
-        /* Transisi Cover / Amplop */
+        /* Transisi Animasi Buka Amplop */
         #cover-screen {
             transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease-in-out;
         }
         .cover-open {
             transform: translateY(-100%);
             opacity: 0;
+            pointer-events: none;
         }
 
-        /* Floating Music Button */
+        /* Tombol Musik Melayang */
         #music-btn {
             position: fixed;
             bottom: 20px;
             right: 20px;
             z-index: 50;
             animation: spin 4s linear infinite;
-            display: none; /* Disembunyikan sampai undangan dibuka */
+            display: none; /* Disembunyikan sampai tombol "Buka Undangan" diklik */
         }
         .paused { animation-play-state: paused !important; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="antialiased">
+
+    <audio id="bg-music" loop>
+        <source src="lagu-romantis.mp3" type="audio/mpeg">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-16.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="music-btn" class="bg-yellow-600 text-white w-12 h-12 rounded-full shadow-lg items-center justify-center" onclick="toggleMusic()">
+        <i class="fas fa-pause"></i>
+    </button>
+
+    <div id="cover-screen" class="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center bg-foto-utama">
+        <div class="relative z-10 text-center w-11/12 max-w-md p-8 border-2 border-yellow-600 rounded-2xl bg-black/50 backdrop-blur-md shadow-[0_0_20px_rgba(202,138,4,0.3)]">
+            <p class="text-yellow-500 tracking-widest uppercase text-xs mb-2 font-semibold">The Wedding Of</p>
+            <h2 class="font-script text-5xl md:text-6xl text-white mb-6">Sholahudin <br><span class="text-3xl">&</span><br> Noventiya</h2>
+            
+            <div class="border-t border-b border-gray-500 py-4 my-6">
+                <p class="text-xs text-gray-300 uppercase tracking-widest mb-2">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+                <p class="font-bold text-lg text-white">Tamu Undangan</p>
+            </div>
+
+            <button onclick="openInvitation()" class="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-3 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg flex items-center justify-center mx-auto gap-2">
+                <i class="fas fa-envelope-open-text"></i> Buka Undangan
+            </button>
+        </div>
+    </div>
+    <div id="main-content" class="h-screen overflow-y-auto opacity-0 transition-opacity duration-1000 hidden">
+        
+        <header class="bg-foto-utama h-screen flex flex-col justify-center items-center text-center px-4 pt-20">
+            <h1 class="font-script text-6xl md:text-8xl text-white mb-4 drop-shadow-lg">Sholahudin <br> <span class="text-4xl text-yellow-600">&</span> <br> Noventiya</h1>
+            <p class="text-xl md:text-2xl font-serif italic text-gray-300 mt-4 drop-shadow-md">Minggu, 12 April 2026</p>
+        </header>
+
+        <section class="py-20 px-4 bg-[#1a1a1a] text-center border-t border-gray-800">
+            <h2 class="font-script text-4xl md:text-5xl text-yellow-500 mb-6">Bismillahirohmanirohim</h2>
+            <p class="text-sm text-gray-400 max-w-2xl mx-auto mb-16 leading-relaxed">
+                Maha Suci Allah SWT yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah perkenankanlah kami menikahkan putra-putri kami:
+            </p>
+
+            <div class="flex flex-col md:flex-row justify-center items-center gap-12 max-w-4xl mx-auto">
+                <div class="flex-1">
+                    <h3 class="font-script text-4xl text-white mb-2">Muhammad Sholahudin</h3>
+                    <p class="text-sm text-gray-400">Putra Bpk. Kholid & Ibu Siti Masruroh</p>
+                </div>
+                
+                <div class="text-4xl font-script text-yellow-600">&</div>
+                
+                <div class="flex-1">
+                    <h3 class="font-script text-4xl text-white mb-2">Noventiya Dinda Angga Rani</h3>
+                    <p class="text-sm text-gray-400">Putri Bpk. Miskum (Alm.) & Ibu Surini</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 px-4 bg-[#111] text-center border-t border-gray-800">
+            <h2 class="font-serif text-3xl text-white mb-2 uppercase tracking-widest">Our Moments</h2>
+            <div class="w-16 h-1 bg-yellow-600 mx-auto mb-12"></div>
+            
+            <div class="max-w-md mx-auto rounded-xl overflow-hidden shadow-[0_0_30px_rgba(255,255,255,0.05)] border border-gray-800">
+                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1974&auto=format&fit=crop" alt="Our Moments" class="w-full h-auto object-cover hover:scale-105 transition duration-700">
+            </div>
+        </section>
+
+        <section class="py-20 px-4 bg-[#1a1a1a] text-center border-t border-gray-800">
+            <h2 class="font-serif text-3xl text-white mb-2 uppercase tracking-widest">Save The Date</h2>
+            <div class="w-16 h-1 bg-yellow-600 mx-auto mb-16"></div>
+            
+            <div class="max-w-md mx-auto mb-16">
+                <div class="bg-[#111] p-10 rounded-2xl border border-gray-800 hover:border-yellow-600 transition duration-300 shadow-2xl">
+                    <i class="fas fa-glass-cheers text-5xl text-yellow-600 mb-6"></i>
+                    <h3 class="text-3xl font-serif text-white mb-2">Resepsi Pernikahan</h3>
+                    <p class="text-yellow-500 font-bold mb-4 text-lg">Minggu, 12 April 2026</p>
+                    <p class="text-gray-300">Pukul 18.00 WIB - Selesai</p>
+                </div>
+            </div>
+
+            <div class="max-w-4xl mx-auto bg-[#111] p-6 md:p-10 rounded-2xl border border-gray-800 shadow-xl">
+                <h3 class="text-2xl font-serif text-white mb-4">Lokasi Acara</h3>
+                <p class="text-yellow-500 font-bold text-xl mb-2">Wisma Greenhill</p>
+                <p class="text-gray-400 mb-6">RT.01 / RW.13, Turen, Kabupaten Malang, Jawa Timur</p>
+                
+                <div class="w-full h-64 md:h-96 rounded-lg overflow-hidden mb-8 border border-gray-700">
+                    <iframe src="https://maps.app.goo.gl/8CBK9Da5eJVd3Ho7A" 
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                
+                <a href="https://maps.app.goo.gl/8CBK9Da5eJVd3Ho7A" target="_blank" class="inline-block bg-yellow-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-yellow-700 transition">
+                    <i class="fas fa-map-marker-alt mr-2"></i> Buka Peta Lokasi
+                </a>
+            </div>
+        </section>
+
+        <footer class="py-16 bg-black text-center border-t border-gray-900">
+            <p class="text-gray-400 text-sm mb-6 max-w-md mx-auto px-4 italic">"Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu."</p>
+            <h2 class="font-script text-5xl text-yellow-600 mb-2">Sholahudin & Noventiya</h2>
+            <p class="text-gray-600 text-xs mt-10">© 2026 Wedding Invitation. All Rights Reserved.</p>
+        </footer>
+    </div>
+    <script>
+        const audio = document.getElementById("bg-music");
+        const musicBtn = document.getElementById("music-btn");
+        const coverScreen = document.getElementById("cover-screen");
+        const mainContent = document.getElementById("main-content");
+        let isPlaying = false;
+
+        // Fungsi Buka Undangan
+        function openInvitation() {
+            // 1. Tampilkan div konten utama yang tadinya disembunyikan
+            mainContent.classList.remove("hidden");
+            
+            // 2. Jalankan animasi sampul naik ke atas
+            coverScreen.classList.add("cover-open");
+            
+            // 3. Setelah animasi selesai, sembunyikan sampul dan kembalikan scrollbar
+            setTimeout(() => {
+                coverScreen.style.display = "none";
+                document.body.style.overflow = "auto";
+                mainContent.style.opacity = "1";
+            }, 50); 
+
+            // 4. Putar Lagu
+            audio.play().catch(error => console.log("Gagal memutar audio:", error));
+            isPlaying = true;
+            
+            // 5. Munculkan tombol kontrol musik
+            musicBtn.style.display = "flex";
+            musicBtn.classList.remove("paused");
+        }
+
+        // Fungsi Pause/Play Musik
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                musicBtn.classList.add("paused");
+                musicBtn.innerHTML = '<i class="fas fa-music"></i>';
+            } else {
+                audio.play();
+                musicBtn.classList.remove("paused");
+                musicBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+            isPlaying = !isPlaying;
+        }
+    </script>
+</body>
+</html>
