@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Undangan Resepsi Pernikahan</title>
     <meta name="description" content="Undangan Resepsi Pernikahan Spesial">
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body style="overflow: hidden;"> <!-- Overflow hidden until button clicked -->
 
     <!-- Cover Pop-up -->
@@ -24,7 +28,8 @@
         <div class="cover-content">
             <h4 class="cover-subtitle">Resepsi Pernikahan</h4>
             <h1 class="cover-title">Sholahudin & Noventiya</h1>
-            <p class="cover-text">Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di acara resepsi pernikahan kami.</p>
+            <p class="cover-text">Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di acara
+                resepsi pernikahan kami.</p>
             <button id="btn-open" class="btn-primary">
                 <i class="fa-solid fa-envelope-open-text"></i> Buka Undangan
             </button>
@@ -34,7 +39,7 @@
 
     <!-- Main Landing Page -->
     <main class="main-content">
-        
+
         <!-- Hero Section -->
         <section id="hero" class="hero-section">
             <div class="hero-bg" style="background-image: url('foto_slideshow1.jpeg');"></div>
@@ -57,22 +62,22 @@
                     <h2>Mempelai</h2>
                     <p>Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan.</p>
                 </div>
-                
+
                 <div class="couple-row">
                     <div class="couple-box" data-aos="fade-up">
                         <div class="groom-img couple-img"></div>
                         <h3>Muhammad Sholahudin</h3>
                         <p>Putra Bpk. Kholid & Ibu Siti Masruroh</p>
                     </div>
-                    
+
                     <div class="couple-and">
                         <span>&</span>
                     </div>
 
                     <div class="couple-box" data-aos="fade-up" data-aos-delay="200">
                         <div class="bride-img couple-img"></div>
-                        <h3>Noventiya Dinda Angga Rani</h3>
-                        <p>Putri Bpk. Miskum (Alm.) & Ibu Surini</p>
+                        <h3>Noventiya Dinda Anggarani</h3>
+                        <p>Putri Bapak Iwan & Ibu Rini</p>
                     </div>
                 </div>
             </div>
@@ -83,7 +88,8 @@
             <div class="container reveal">
                 <div class="section-title">
                     <h2>Resepsi Pernikahan</h2>
-                    <p>Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir di acara Resepsi kami.</p>
+                    <p>Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir
+                        di acara Resepsi kami.</p>
                 </div>
 
                 <div class="event-card">
@@ -107,10 +113,19 @@
                             </p>
                         </div>
                     </div>
-                    
+
                     <!-- Location Image -->
                     <div class="location-img-wrapper reveal">
                         <img src="foto%20rumah%20atau%20alamat.jpeg" alt="Foto Rumah / Alamat" class="location-img">
+                    </div>
+
+                    <!-- Maps Location -->
+                    <div class="maps-wrapper reveal" style="margin-top: 30px; display: flex; flex-direction: column; gap: 15px;">
+                        <iframe src="https://maps.google.com/maps?q=-8.132819,112.747182&hl=id&z=15&output=embed" width="100%" height="250" style="border:0; border-radius: var(--radius); box-shadow: 0 5px 15px rgba(0,0,0,0.1);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        
+                        <a href="https://maps.app.goo.gl/nHCFzAjVe9Dvn4217" target="_blank" class="btn-primary" style="text-decoration: none; width: fit-content; margin: 0 auto;">
+                            <i class="fa-solid fa-map-location-dot"></i> Buka di Google Maps
+                        </a>
                     </div>
                 </div>
             </div>
@@ -122,7 +137,7 @@
                 <div class="section-title">
                     <h2>Our Moments</h2>
                 </div>
-                
+
                 <div class="slideshow-container reveal">
                     <div class="slide fade">
                         <img src="foto_slideshow1.jpeg" alt="Moment 1">
@@ -164,4 +179,5 @@
     <!-- JS -->
     <script src="script.js"></script>
 </body>
+
 </html>

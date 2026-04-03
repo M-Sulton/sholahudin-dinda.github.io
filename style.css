@@ -585,6 +585,7 @@ body.allow-scroll .main-content {
     .cover-title { font-size: 2.8rem; }
     .hero-text h2 { font-size: 3.5rem; }
     .section-title h2 { font-size: 2rem; }
-    .couple-and { padding: 20px 0; }
+    .couple-row { flex-direction: column; gap: 10px; }
+    .couple-and { padding: 10px 0; line-height: 1; }
     .event-card { padding: 30px 20px; }
 }
