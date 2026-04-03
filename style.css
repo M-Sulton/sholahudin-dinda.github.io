@@ -112,6 +112,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .cover-title span {
+    display: block;
+    margin: 0;
     font-family: var(--font-heading);
     font-size: 2.5rem;
 }
@@ -217,6 +219,8 @@ body.allow-scroll .main-content {
 }
 
 .hero-text h2 span {
+    display: block;
+    margin: 5px 0;
     font-family: var(--font-heading);
     font-size: 2.5rem;
 }
@@ -593,5 +597,5 @@ body.allow-scroll .main-content {
     .couple-row { flex-direction: column; gap: 10px; }
     .couple-and { padding: 10px 0; line-height: 1; }
     .event-card { padding: 30px 20px; }
-    .cover-title span, .hero-text h2 span { display: block; margin: -5px 0; }
+
 }
